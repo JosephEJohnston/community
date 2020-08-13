@@ -63,6 +63,10 @@
                     <hr>
 
                     <form action="/publish" method="post">
+
+                        <!-- 表单再次提交时需要这个属性，但是不需要展示 -->
+                        <input type="hidden" name="id" th:value="${id}">
+
                         <div class="form-group">
                             <label for="title">问题标题（简单扼要）：</label>
                             <input type="text" class="form-control" th:value="${title}"

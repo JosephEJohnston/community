@@ -73,6 +73,19 @@
                 </div>
             </div>
         </div>
+
+
+        <script type="application/javascript">
+            window.onload = function () {
+                // 调试工具
+                debugger;
+                let closable = window.localStorage.getItem("closable");
+                if (closable === true) {
+                    window.close();
+                    window.localStorage.removeItem("closable");
+                }
+            }
+        </script>
     </body>
 </html>
 

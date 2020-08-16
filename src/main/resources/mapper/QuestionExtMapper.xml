@@ -26,8 +26,8 @@
     where id = #{id}
   </update>
 
-  <!-- 按照标签进行的模糊查询 -->
+  <!-- 按照标签进行的模糊查询, id != #{id} AND -->
   <select id="selectRelated" parameterType="life.majiang.community.model.Question" resultMap="BaseResultMap">
-    SELECT * FROM QUESTION WHERE id != #{id} AND tag REGEXP #{tag}
+    SELECT * FROM QUESTION WHERE tag REGEXP #{tag}
   </select>
 </mapper>

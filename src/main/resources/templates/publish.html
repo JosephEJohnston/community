@@ -70,7 +70,9 @@
                         <div class="form-group">
                             <label for="title">问题标题（简单扼要）：</label>
                             <input type="text" class="form-control" th:value="${title}"
-                                   name="title" id="title" placeholder="问题标题......">
+                                   name="title" id="title"
+                                   autocomplete="off"
+                                   placeholder="问题标题......">
                         </div>
                         <div class="form-group">
                             <label for="description">问题补充（必填，请参照右侧提示）：</label>
@@ -80,7 +82,36 @@
                         <div class="form-group">
                             <label for="tag">添加标签：</label>
                             <input type="text" class="form-control" th:value="${tag}"
-                                   name="tag" id="tag" placeholder="输入标签，以逗号分隔">
+                                   name="tag" id="tag"
+                                   autocomplete="off"
+                                   placeholder="输入标签，以逗号分隔"
+                                   onclick="showSelectTag()">
+
+                            <div id="select-tag" class="publish-tag-tab">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" th:each="selectCategory, selectCategoryStat : ${tags}"
+                                        th:class="${selectCategoryStat.first ? 'active' : ''}">
+                                        <a th:href="${'#' + selectCategory.categoryName}" aria-controls="home" role="tab" data-toggle="tab"
+                                           th:text="${selectCategory.categoryName}">
+                                            开发语言
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane"
+                                        th:id="${selectCategory.categoryName}"
+                                        th:each="selectCategory : ${tags}"
+                                        th:classappend="${selectCategoryStat.first ? 'active' : ''}">
+                                        <span>
+                                           <span class="label label-info"
+                                                 th:each="selectTag : ${selectCategory.tags}">
+                                                <span class="glyphicon glyphicon-tags" th:text="${' ' + selectTag}"
+                                                      onclick="selectTag(this)" th:data-tag="${selectTag}"></span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="container-fluid main">
@@ -112,6 +143,23 @@
             </div>
         </div>
 
+        <script>
+            function selectTag(e) {
+                let previous = $("#tag").val();
+                let value = e.getAttribute("data-tag");
+                if (previous.indexOf(value) === -1) {
+                    if (previous) {
+                        $("#tag").val(previous + ',' + value);
+                    } else {
+                        $("#tag").val(value);
+                    }
+                }
+            }
+            
+            function showSelectTag() {
+                $("#select-tag").show();
+            }
+        </script>
     </body>
 </html>
 

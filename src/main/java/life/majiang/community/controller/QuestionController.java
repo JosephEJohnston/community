@@ -24,7 +24,7 @@ public class QuestionController {
     private CommentService commentService;
 
     @GetMapping("/question/{id}")
-    private String question(@PathVariable(name = "id") Long id,
+    public String question(@PathVariable(name = "id") Long id,
                             Model model) {
 
         QuestionDTO questionDTO = questionService.getById(id);
@@ -35,6 +35,7 @@ public class QuestionController {
         questionService.incView(id);
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", comments);
+        model.addAttribute("relatedQuestions", relatedQuestions);
         return "question";
     }
 }

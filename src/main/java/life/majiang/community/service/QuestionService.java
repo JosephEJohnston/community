@@ -53,9 +53,10 @@ public class QuestionService {
         paginationDTO.setPagination(totalPage, page);
         // size * (page - 1)
         Integer offset = size * (page - 1);
+        QuestionExample example = new QuestionExample();
+        example.setOrderByClause("gmt_create desc");
         List<Question> questions = questionMapper.
-                selectByExampleWithBLOBsWithRowbounds(new QuestionExample()
-                        , new RowBounds(offset, size));
+                selectByExampleWithBLOBsWithRowbounds(example, new RowBounds(offset, size));
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questions) {
@@ -158,5 +159,9 @@ public class QuestionService {
         question.setId(id);
         question.setViewCount(1);
         questionExtMapper.incView(question);
+    }
+
+    public List<QuestionDTO> selectRelated(QuestionDTO questionDTO) {
+        return null;
     }
 }

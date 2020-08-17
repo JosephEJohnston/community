@@ -9,6 +9,14 @@
         <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css" th:href="@{/css/bootstrap-theme.min.css}"/>
         <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" type="application/javascript"></script>
         <script src="../static/js/moment.min.js" th:src="@{/js/moment.min.js}" type="application/javascript"></script>
+
+        <link rel="stylesheet" href="../static/lib/editor.md/css/editormd.preview.min.css"
+              th:href="@{/lib/editor.md/css/editormd.preview.min.css}"/>
+        <script src="../static/lib/editor.md/editormd.min.js" th:src="@{/lib/editor.md/editormd.min.js}"
+                type="application/javascript"></script>
+        <script src="../static/lib/editor.md/lib/marked.min.js" th:src="@{/lib/editor.md/lib/marked.min.js}"></script>
+        <script src="../static/lib/editor.md/lib/prettify.min.js" th:src="@{/lib/editor.md/lib/prettify.min.js}"></script>
+
     </head>
     <body>
 
@@ -31,8 +39,9 @@
 
                         <!-- 内容 -->
                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                        th:text="${question.description}"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
+                            <textarea style="display:none;" th:text="${question.description}">### Hello world!</textarea>
+                        </div>
 
                         <!-- 标签 -->
                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -133,12 +142,12 @@
                                 <div class="media-left media-middle">
                                     <a href="#">
                                         <img class="media-object img-rounded"
-                                             th:src="${question.user.avatarUrl}" alt="">
+                                             th:src="${session.user != null ? session.user.avatarUrl : '/img/default.png'}" alt="">
                                     </a>
                                 </div>
                                 <div class="media-body">
                                     <h5 class="media-heading">
-                                        <span th:text="${question.user.name}"></span>
+                                        <span th:text="${session.user != null ? session.user.name : '匿名用户'}"></span>
                                     </h5>
                                 </div>
                             </div>
@@ -191,6 +200,10 @@
         </div>
 
         <script>
+            $(function() {
+                var testView = editormd.markdownToHTML("question-view", {});
+            });
+
             // 提交回复
             function post() {
                 let questionId = $("#question_id").val();

@@ -19,6 +19,15 @@
     </properties>
 
     <dependencies>
+
+        <!-- 注意，我用的是阿里云而不是 ucloud，这里就为写个例子 -->
+        <!-- 导入失败，应该不是网的问题 -->
+        <!--<dependency>
+            <groupId>cn.ucloud.ufile</groupId>
+            <artifactId>ufile-client-java</artifactId>
+            <version>latest-release-version</version>
+        </dependency>-->
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

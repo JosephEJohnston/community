@@ -18,6 +18,31 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <!--<profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <db.url>jdbc:h2:F:/community</db.url>
+                <db.user>sa</db.user>
+                <db.password>123</db.password>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <db.url>jdbc:mysql://localhost:3306/mawen</db.url>
+                <db.user>root</db.user>
+                <db.password></db.password>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>-->
+
     <dependencies>
 
         <dependency>
@@ -124,10 +149,6 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.5.3</version>
                 <configuration>
-                    <!--<url>jdbc:h2:F:/community</url>
-                    <user>sa</user>
-                    <password>123</password>-->
-
                     <url>jdbc:mysql://localhost:3306/mawen</url>
                     <user>root</user>
                     <password></password>

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 @Controller
 public class PublishController {
@@ -51,6 +53,7 @@ public class PublishController {
         // 前后端非分离：提交失败是跳转回原页面，且保留输入信息
         // 前后端分离：前端提示
 
+        description = new String(description.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
         model.addAttribute("title", title);
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);

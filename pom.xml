@@ -20,6 +20,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.49</version>
+        </dependency>
+
         <!-- 注意，我用的是阿里云而不是 ucloud，这里就为写个例子 -->
         <!-- 导入失败，应该不是网的问题 -->
         <!--<dependency>
@@ -118,15 +124,24 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.5.3</version>
                 <configuration>
-                    <url>jdbc:h2:F:/community</url>
+                    <!--<url>jdbc:h2:F:/community</url>
                     <user>sa</user>
-                    <password>123</password>
+                    <password>123</password>-->
+
+                    <url>jdbc:mysql://localhost:3306/mawen</url>
+                    <user>root</user>
+                    <password></password>
                 </configuration>
                 <dependencies>
-                    <dependency>
+                    <!--<dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
                         <version>1.4.200</version>
+                    </dependency>-->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.49</version>
                     </dependency>
                 </dependencies>
             </plugin>

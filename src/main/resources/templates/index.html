@@ -42,26 +42,26 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
                             <li th:if="${pagination.showFirstPage}">
-                                <a th:href="@{/(page=1)}" href="#" aria-label="First">
+                                <a th:href="@{/(page=1, search=${search})}" href="#" aria-label="First">
                                     <span aria-hidden="true">&lt;&lt;</span>
                                 </a>
                             </li>
                             <li th:if="${pagination.showPrevious}">
-                                <a th:href="@{/(page=${pagination.page - 1})}" href="#" aria-label="Previous">
+                                <a th:href="@{/(page=${pagination.page - 1}, search=${search})}" href="#" aria-label="Previous">
                                     <span aria-hidden="true">&lt;</span>
                                 </a>
                             </li>
                             <li th:each="page : ${pagination.pages}"
                                 th:class="${pagination.page == page} ? 'active' : ''">
-                                <a th:text="${page}" href="#" th:href="@{/(page=${page})}"></a>
+                                <a th:text="${page}" href="#" th:href="@{/(page=${page}, search=${search})}"></a>
                             </li>
                             <li th:if="${pagination.showNext}">
-                                <a th:href="@{/(page=${pagination.page + 1})}" href="#" aria-label="Next">
+                                <a th:href="@{/(page=${pagination.page + 1}, search=${search})}" href="#" aria-label="Next">
                                     <span aria-hidden="true">&gt;</span>
                                 </a>
                             </li>
                             <li th:if="${pagination.showEndPage}">
-                                <a th:href="@{/(page=${pagination.totalPage})}" href="#" aria-label="End">
+                                <a th:href="@{/(page=${pagination.totalPage}, search=${search})}" href="#" aria-label="End">
                                     <span aria-hidden="true">&gt;&gt;</span>
                                 </a>
                             </li>
@@ -69,11 +69,15 @@
                     </nav>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                    <h3>热门话题</h3>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h4>关注麻酱笔记</h4>
+                        <img class="img-thumbnail question-wechat" src="../static/img/wechat.jpg" th:src="@{/img/wechat.jpg}" alt="#">
+                    </div>
                 </div>
             </div>
         </div>
 
+        <div th:insert="footer :: foot"></div>
 
         <script type="application/javascript">
             window.onload = function () {

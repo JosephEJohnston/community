@@ -44,6 +44,9 @@ public class CustomizeExceptionHandler {
             return null;
         } else {
             // 错误页面跳转
+            System.out.println();
+            System.out.println(ex);
+            System.out.println();
             if (ex instanceof CustomizeException) {
                 model.addAttribute("message", ex.getMessage());
             } else {

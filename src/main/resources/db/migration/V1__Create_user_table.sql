@@ -8,4 +8,4 @@ create table user
     gmt_modified bigint,
     constraint user_pk
         primary key (id)
-);
+) engine=InnoDB default charset=utf8;

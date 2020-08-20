@@ -12,4 +12,4 @@ create table question
 	tag varchar(256),
 	constraint question_pk
 		primary key (id)
-);
+)engine=InnoDB default charset=utf8;

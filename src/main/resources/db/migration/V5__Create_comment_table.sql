@@ -9,5 +9,5 @@ create table comment
 	like_count bigint default 0,
 	constraint comment_pk
 		primary key (id)
-);
+)engine=InnoDB default charset=utf8;
 

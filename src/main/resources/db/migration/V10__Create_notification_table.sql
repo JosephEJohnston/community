@@ -9,4 +9,4 @@ create table notification
 	status int default 0 not null,
 	constraint notification_pk
 		primary key (id)
-);
+)engine=InnoDB default charset=utf8;

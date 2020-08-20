@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 @Controller
@@ -53,7 +54,17 @@ public class PublishController {
         // 前后端非分离：提交失败是跳转回原页面，且保留输入信息
         // 前后端分离：前端提示
 
-        description = new String(description.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+
+        // 解决乱码问题
+        try {
+            description = new String(description.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+            System.out.println(description);
+            description = URLDecoder.decode(description, "UTF-8");
+            System.out.println(description);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         model.addAttribute("title", title);
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
